@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +18,14 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private StudentEntity student;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id")
     private ClassEntity schoolClass;
 }
-
+/*
+    la logica è corretta ma devi rivedere le relazioni tra classi. All'interno del codice tu hai
+    inserito le oneToOne mentre l'esercizio chiede: considera questo use case: 1 student ---> n
+     enrollments 1 class ---> n enrollments*/
